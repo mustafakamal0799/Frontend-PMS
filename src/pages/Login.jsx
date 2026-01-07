@@ -4,6 +4,7 @@ import { login } from "../services/authService";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -11,7 +12,7 @@ export default function Login() {
       const res = await login({ email, password });
       console.log(res.data);
       localStorage.setItem("token", res.data.token);
-      window.location.href = "/project";
+      navigate("/project");
     } catch (err) {
       console.log(err.response?.data);
       alert("login gagal");
